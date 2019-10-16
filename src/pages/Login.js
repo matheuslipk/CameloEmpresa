@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient'
 
+import { cores } from '../constantes'
+
 const Login = function ({ navigation }) {
 
   function handleLogin(){
@@ -26,7 +28,7 @@ const Login = function ({ navigation }) {
   
   return (
     <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-        colors={['#FF512F', '#DD2476']} style={styles.container}>
+        colors={cores.degrade} style={styles.container}>
       <Text style={styles.logo}>Logo do App</Text>
 
       <TextInput autoCapitalize="none" keyboardType="email-address" 

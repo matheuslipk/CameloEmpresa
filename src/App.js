@@ -9,9 +9,7 @@ const App = function () {
 
   return (
     <>
-    {
-      logged ? <RoutesMain/> : <RoutesLogin/>
-    }    
+    { logged ? <RoutesMain/> : <RoutesLogin/> }    
     </>
   );
 

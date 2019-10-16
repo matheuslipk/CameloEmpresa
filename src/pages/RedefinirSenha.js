@@ -1,13 +1,15 @@
 import React from 'react';
-
 import { StyleSheet, View, Text } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient'
+
+import { cores } from '../constantes'
 
 const RedefinirSenha = function ({ navigation }) {
 
   return (    
-    <View style={styles.container} >
+    <LinearGradient colors={cores.degrade} style={styles.container} >
       <Text style={styles.text}>Redefinir Senha</Text>
-    </View>
+    </LinearGradient>
   );
 };
 

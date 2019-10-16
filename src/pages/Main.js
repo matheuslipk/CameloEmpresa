@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+
+import Icon from 'react-native-vector-icons/AntDesign'
 
 const Login = function ({ navigation }) {
 
@@ -10,8 +11,9 @@ const Login = function ({ navigation }) {
 
   return (    
     <View style={styles.container}>
+      <Icon name="stepforward" size={30} color={"#000"}/>
       <TouchableOpacity style={styles.buttonEntrar} onPress={handleLogout}>
-        <Text style={styles.textButton}>Tela 1</Text>
+        <Text style={styles.textButton}>Tela 0</Text>
       </TouchableOpacity>
     </View>
   );
