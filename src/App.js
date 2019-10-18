@@ -5,7 +5,7 @@ import {RoutesLogin, RoutesMain} from './routes';
 
 
 const App = function () {
-  var [logged, setlogged] = useState(true)   
+  var [logged, setlogged] = useState(false)   
 
   return (
     <>

@@ -4,9 +4,11 @@ import {
   Text, 
   TouchableOpacity, 
   TextInput,
-  ToastAndroid
+  ToastAndroid,
+  View
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 import { cores } from '../constantes'
 
@@ -31,11 +33,18 @@ const Login = function ({ navigation }) {
         colors={cores.degrade} style={styles.container}>
       <Text style={styles.logo}>Logo do App</Text>
 
-      <TextInput autoCapitalize="none" keyboardType="email-address" 
-          style={ styles.input } placeholder="Digite seu usuário ou email"/>
-      <TextInput secureTextEntry={true} style={ styles.input }
-          placeholder="Digite sua senha"/>
+      <View style={styles.inputContainer}>
+        <Icon name="md-person" size={30} color="#0008" />
+        <TextInput autoCapitalize="none" keyboardType="email-address" 
+            style={ styles.input } placeholder="Digite seu usuário ou email"/>
+      </View>
 
+      <View style={styles.inputContainer}>
+        <Icon name="md-key" size={30} color="#0008" />
+        <TextInput secureTextEntry={true} style={ styles.input }
+            placeholder="Digite sua senha"/>
+      </View>
+      
       <Text onPress={navigateToForgoutPassword} style={styles.textForgout}>Esqueci minha senha</Text>
 
       <TouchableOpacity onPress={handleLogin} style={styles.buttonEntrar}>
@@ -57,14 +66,21 @@ const styles = StyleSheet.create({
     fontSize: 30,
     marginBottom: 50
   },
-  input:{
-    borderColor: "#666",
-    borderRadius: 5,
+  inputContainer:{
+    borderColor: "#000",
     alignSelf: 'stretch',
-    paddingLeft: 20,
-    marginBottom: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 0,
+    backgroundColor: '#FFFFFF88',
     marginHorizontal: 25,
-    backgroundColor: '#FFFFFF88'
+    borderRadius: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 4
+  },
+  input:{
+    flex: 1,
+    paddingHorizontal: 20,
   },
   textForgout:{
     color: '#00FF',
