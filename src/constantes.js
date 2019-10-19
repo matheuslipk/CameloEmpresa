@@ -5,7 +5,7 @@ const cor4 = "#E9E4F0";
 
 
 export const cores = {
-    primaria: "#AAFA",
+    primaria: "#AAF",
     linkPrimario: "#555"
 }
 
