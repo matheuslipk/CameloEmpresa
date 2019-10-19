@@ -1,21 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, TextInput, ToastAndroid, View } from 'react-native';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import { cores } from '../constantes'
+import { cores, varAsyncStorage } from '../constantes'
 import { login } from '../store/actions/user'
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Login = function (props) {
 
   const { login, navigation } = props
+  const [ email, setEmail ] = useState('')
+  const [ senha, setSenha ] = useState('')
+
+  function onChangeEmail(email){
+    setEmail(email)
+  }
+
+  function onChangeSenha(senha){
+    setSenha(senha)
+  }
 
   function handleLogin(){
-    AsyncStorage.setItem('@usuario', "Matheus Araujo")
-    login()
+    if(senha==='123456'){
+      AsyncStorage.setItem(varAsyncStorage.usuario, "Matheus Araujo")
+      login()
+    }else{
+      ToastAndroid.show("Usuário ou senha incorreta", ToastAndroid.SHORT)
+    }
   }
 
   function navigateToForgoutPassword(){
@@ -36,13 +50,14 @@ const Login = function (props) {
       <View style={styles.inputContainer}>
         <Icon name="md-person" size={30} color="#0008" />
         <TextInput autoCapitalize="none" keyboardType="email-address" 
-            style={ styles.input } placeholder="Digite seu usuário ou email"/>
+            style={ styles.input } placeholder="Digite seu usuário ou email" 
+            value={ email } onChangeText={(email)=>onChangeEmail(email)}/>
       </View>
 
       <View style={styles.inputContainer}>
         <Icon name="md-key" size={30} color="#0008" />
         <TextInput secureTextEntry={true} style={ styles.input }
-            placeholder="Digite sua senha"/>
+            placeholder="Digite sua senha" value={ senha } onChangeText={ (senha)=>onChangeSenha(senha) }/>
       </View>
       
       <Text onPress={navigateToForgoutPassword} style={styles.textForgout}>Esqueci minha senha</Text>
