@@ -51,7 +51,7 @@ const Login = function (props) {
         <Text style={styles.textButton}>Entrar</Text>
       </TouchableOpacity>
 
-      <Text onPress={navigateToCreateAcount} style={styles.textCreatAccount}>Não tem conta? <Text style={{color: 'blue'}}>Registre-se aqui</Text></Text>
+      <Text onPress={navigateToCreateAcount} style={styles.textCreatAccount}>Não tem conta? <Text style={{color: '#0DF'}}>Registre-se aqui</Text></Text>
     </LinearGradient>
   );
 };
@@ -81,24 +81,25 @@ const styles = StyleSheet.create({
   input:{
     flex: 1,
     paddingHorizontal: 20,
+    fontSize: 16
   },
   textForgout:{
-    color: '#00FF',
+    color: '#0DF',
     textDecorationLine: 'underline',
     fontSize: 16
   },
   buttonEntrar:{
-    padding: 10,
+    padding: 5,
     marginTop: 20,
-    backgroundColor: '#fffd',
-    width: 150,
+    backgroundColor: cores.primaria,
     alignItems: 'center',
-    borderRadius: 10
+    borderRadius: 15,
+    alignSelf: 'stretch',
+    marginHorizontal: 25,
+    marginBottom: 20
   },
   textButton:{
-    fontSize: 20,
-    color: "#555",
-    fontWeight: 'bold'
+    fontSize: 25,
   },
   textCreatAccount:{
     position: 'absolute',
