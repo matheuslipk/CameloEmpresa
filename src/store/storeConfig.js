@@ -2,11 +2,7 @@ import { createStore, combineReducers } from 'redux'
 import userReducer from './reducers/user'
 
 const reducers = combineReducers({
-    user: userReducer,
+    logado: userReducer,
 })
 
-const storeConfif = () =>{
-    return createStore(reducers)
-}
-
-export default storeConfif
+export default createStore(reducers)

@@ -1,21 +1,21 @@
 import React from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  TouchableOpacity, 
-  TextInput,
-  ToastAndroid,
-  View
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, TextInput, ToastAndroid, View } from 'react-native';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 import { cores } from '../constantes'
+import { login } from '../store/actions/user'
+import AsyncStorage from '@react-native-community/async-storage';
 
-const Login = function ({ navigation }) {
+const Login = function (props) {
+
+  const { login, navigation } = props
 
   function handleLogin(){
-    return;
+    AsyncStorage.setItem('@usuario', "Matheus Araujo")
+    login()
   }
 
   function navigateToForgoutPassword(){
@@ -108,4 +108,7 @@ const styles = StyleSheet.create({
 
 });
 
-export default Login;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ login }, dispatch);
+
+export default connect(null, mapDispatchToProps)(Login);

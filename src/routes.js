@@ -7,7 +7,7 @@ import RedefinirSenha from './pages/RedefinirSenha'
 import MeusProdutos from './pages/MeusProdutos'
 import Main from './pages/Main'
 import Cadastro from './pages/Cadastro'
-
+import Conta from './pages/Conta'
 
 const RoutesLogin = createAppContainer(
     createStackNavigator({
@@ -20,7 +20,8 @@ const RoutesLogin = createAppContainer(
 const RoutesMain = createAppContainer(
     createBottomTabNavigator({       
         "Principal": Main,
-        "Meus Produtos": MeusProdutos
+        "Meus Produtos": MeusProdutos,
+        "Conta": Conta
     })
 )
 
