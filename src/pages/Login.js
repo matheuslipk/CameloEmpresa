@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import { cores, varAsyncStorage } from '../constantes'
+import { cores, varAsyncStorage, degrades } from '../constantes'
 import { login } from '../store/actions/user'
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -34,17 +34,15 @@ const Login = function (props) {
 
   function navigateToForgoutPassword(){
     navigation.navigate('RedefinirSenha')
-    ToastAndroid.show("Esqueci a senha...", ToastAndroid.SHORT)
   }
 
   function navigateToCreateAcount(){
     navigation.navigate('Cadastro')
-    ToastAndroid.show("Fazer cadastro", ToastAndroid.SHORT)
   }
   
   return (
     <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-        colors={cores.degrade} style={styles.container}>
+        colors={degrades.d1} style={styles.container}>
       <Text style={styles.logo}>Logo do App</Text>
 
       <View style={styles.inputContainer}>
@@ -57,16 +55,22 @@ const Login = function (props) {
       <View style={styles.inputContainer}>
         <Icon name="md-key" size={30} color="#0008" />
         <TextInput secureTextEntry={true} style={ styles.input }
-            placeholder="Digite sua senha" value={ senha } onChangeText={ (senha)=>onChangeSenha(senha) }/>
+            placeholder="Digite sua senha" value={ senha } 
+            onChangeText={ (senha)=>onChangeSenha(senha) }/>
       </View>
       
-      <Text onPress={navigateToForgoutPassword} style={styles.textForgout}>Esqueci minha senha</Text>
+      <Text onPress={navigateToForgoutPassword} style={styles.textLink}>
+        Esqueci minha senha
+      </Text>
 
       <TouchableOpacity onPress={handleLogin} style={styles.buttonEntrar}>
         <Text style={styles.textButton}>Entrar</Text>
       </TouchableOpacity>
 
-      <Text onPress={navigateToCreateAcount} style={styles.textCreatAccount}>Não tem conta? <Text style={{color: '#0DF'}}>Registre-se aqui</Text></Text>
+      <Text onPress={navigateToCreateAcount} style={styles.textCreatAccount}>
+        Não tem conta? <Text style={styles.textLink}>Registre-se aqui</Text>
+      </Text>
+
     </LinearGradient>
   );
 };
@@ -98,8 +102,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     fontSize: 16
   },
-  textForgout:{
-    color: '#0DF',
+  textLink:{
+    color: cores.linkPrimario,
     textDecorationLine: 'underline',
     fontSize: 16
   },
@@ -111,10 +115,11 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     alignSelf: 'stretch',
     marginHorizontal: 25,
-    marginBottom: 20
+    marginBottom: 20,
   },
   textButton:{
     fontSize: 25,
+    color: "#FFF"
   },
   textCreatAccount:{
     position: 'absolute',

@@ -10,9 +10,11 @@ import { bindActionCreators } from 'redux';
 
 import { logout } from '../store/actions/user'
 import AsyncStorage from '@react-native-community/async-storage';
+import { cores, degrades } from '../constantes'
+import LinearGradient from 'react-native-linear-gradient'
 
 
-const Conta = function (props, { navigation }) {
+const Conta = function (props) {
 
     const {logout} = props
 
@@ -22,11 +24,14 @@ const Conta = function (props, { navigation }) {
     }
 
   return (    
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.buttonEntrar} onPress={handleLogout}>
-        <Text style={styles.textButton}>Sair</Text>
-      </TouchableOpacity>
-    </View>
+    <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+        colors={degrades.d1} style={styles.container}>
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.buttonEntrar} onPress={handleLogout}>
+          <Text style={styles.textButton}>Sair</Text>
+        </TouchableOpacity>
+      </View>
+    </LinearGradient>
   );
 };
 

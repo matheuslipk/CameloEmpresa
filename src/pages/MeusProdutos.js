@@ -6,18 +6,24 @@ import {
     TouchableOpacity, 
 } from 'react-native';
 
-const MeusProdutos = function ({ navigation }) {
+import { cores, degrades } from '../constantes'
+import LinearGradient from 'react-native-linear-gradient'
+
+const MeusProdutos = function (props) {
 
   function handleLogout(){
     
   }
 
   return (    
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.buttonEntrar} onPress={handleLogout}>
-        <Text style={styles.textButton}>Tela 2</Text>
-      </TouchableOpacity>
-    </View>
+    <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+        colors={degrades.d1} style={styles.container}>
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.buttonEntrar} onPress={handleLogout}>
+          <Text style={styles.textButton}>Tela 2</Text>
+        </TouchableOpacity>
+      </View>
+    </LinearGradient>
   );
 };
 

@@ -3,12 +3,12 @@ import { StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity } from 
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import { cores } from '../constantes'
+import { cores, degrades } from '../constantes'
 
 const Cadastro = function ({ navigation }) {
 
   return (    
-    <LinearGradient colors={cores.degrade} style={styles.container} >
+    <LinearGradient colors={degrades.d1} style={styles.container} >
       <ScrollView style={styles.scroll} contentContainerStyle={{ alignItems: 'center' }}>
 
       <Text style={styles.logo}>Logo do App</Text>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   scroll:{
-    borderWidth: 2,
+    borderWidth: 0,
     borderColor: 'black',
     alignSelf: "stretch",
   },
@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
   },
   textBotaoCadastrar:{
     fontSize: 25,
+    color: "#FFF"
   }
 
 });

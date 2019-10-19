@@ -3,12 +3,12 @@ import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-nativ
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import { cores } from '../constantes'
+import { cores, degrades } from '../constantes'
 
 const RedefinirSenha = function ({ navigation }) {
 
   return (    
-    <LinearGradient colors={cores.degrade} style={styles.container} >
+    <LinearGradient colors={degrades.d1} style={styles.container} >
       
       <View style={styles.inputContainer}>
         <Icon name="md-mail" size={30} color="#0008" />
@@ -16,7 +16,7 @@ const RedefinirSenha = function ({ navigation }) {
             style={ styles.input } placeholder="Digite seu email"/>
       </View>
 
-      <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+      <Text style={{fontSize: 20, fontWeight: 'bold', color: "#888"}}>
         OU
       </Text>
 
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
   },
   textButton:{
     fontSize: 25,
+    color: "#FFF"
   },
 
 });
