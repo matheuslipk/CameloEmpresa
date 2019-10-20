@@ -7,36 +7,42 @@ import LinearGradient from 'react-native-linear-gradient';
 import { degrades } from '../constantes';
 import CardViewProduto from '../components/CardViewProduto';
 
-const MeusProdutos = () => (
-  <LinearGradient
-    start={{ x: 0, y: 0 }}
-    end={{ x: 1, y: 0 }}
-    colors={degrades.d1}
-    style={styles.container}
-  >
+const MeusProdutos = ({ navigation }) => {
+  function handleClick() {
+    navigation.navigate('Produto');
+  }
 
-    <ScrollView style={styles.scrollPrincipal}>
-      <Text style={styles.textTitulo}>Seus Produtos</Text>
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-      <CardViewProduto />
-    </ScrollView>
+  return (
+    <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      colors={degrades.d1}
+      style={styles.container}
+    >
+
+      <ScrollView style={styles.scrollPrincipal}>
+        {/* <Text style={styles.textTitulo}>Seus Produtos</Text> */}
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+        <CardViewProduto onPress={handleClick} />
+      </ScrollView>
 
 
-  </LinearGradient>
-);
+    </LinearGradient>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

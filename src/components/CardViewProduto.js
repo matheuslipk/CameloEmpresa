@@ -1,18 +1,23 @@
 import React from 'react';
 import {
-  StyleSheet, View, Text, Image,
+  StyleSheet, View, Text, Image, TouchableOpacity,
 } from 'react-native';
 
-const CardViewProduto = () => (
-  <View style={styles.containerProduto}>
-    <Image style={styles.imageProduto} source={require('../assets/celular.jpg')} />
+const CardViewProduto = (props) => {
+  const { onPress } = props;
 
-    <View style={styles.containerInfoProduto}>
-      <Text style={styles.textTituloAnuncio}>Titulo do anúncio</Text>
-    </View>
 
-  </View>
-);
+  return (
+    <TouchableOpacity style={styles.containerProduto} onPress={onPress}>
+      <Image style={styles.imageProduto} source={require('../assets/celular.jpg')} />
+
+      <View style={styles.containerInfoProduto}>
+        <Text style={styles.textTituloAnuncio}>Titulo do anúncio</Text>
+      </View>
+
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   containerProduto: {
@@ -22,7 +27,7 @@ const styles = StyleSheet.create({
     elevation: 10,
     borderRadius: 10,
     padding: 2,
-    marginVertical: 5,
+    marginTop: 15,
     flexDirection: 'row',
   },
   imageProduto: {

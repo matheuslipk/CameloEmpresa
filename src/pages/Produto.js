@@ -5,7 +5,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { degrades } from '../constantes';
 
-const Main = () => {
+const Produto = () => {
   function handleLogout() {
 
   }
@@ -19,7 +19,7 @@ const Main = () => {
     >
       <View style={styles.container}>
         <TouchableOpacity style={styles.buttonEntrar} onPress={handleLogout}>
-          <Text style={styles.textButton}>Tela 1</Text>
+          <Text style={styles.textButton}>Tela de Produto</Text>
         </TouchableOpacity>
       </View>
     </LinearGradient>
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Main;
+export default Produto;

@@ -27,7 +27,7 @@ const Conta = (props) => {
       style={styles.container}
     >
       <View style={styles.container}>
-        <TouchableOpacity style={styles.buttonEntrar} onPress={handleLogout}>
+        <TouchableOpacity style={styles.buttonSair} onPress={handleLogout}>
           <Text style={styles.textButton}>Sair</Text>
         </TouchableOpacity>
       </View>
@@ -40,6 +40,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  buttonSair: {
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 15,
   },
   textButton: {
     fontSize: 20,
