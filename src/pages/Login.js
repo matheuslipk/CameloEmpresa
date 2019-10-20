@@ -1,64 +1,78 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, TextInput, ToastAndroid, View } from 'react-native';
-import { connect } from 'react-redux'
+import {
+  StyleSheet, Text, TouchableOpacity, TextInput, ToastAndroid, View,
+} from 'react-native';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import LinearGradient from 'react-native-linear-gradient'
-import Icon from 'react-native-vector-icons/Ionicons'
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-import { cores, varAsyncStorage, degrades } from '../constantes'
-import { login } from '../store/actions/user'
 import AsyncStorage from '@react-native-community/async-storage';
+import { cores, varAsyncStorage, degrades } from '../constantes';
+import { login } from '../store/actions/user';
 
-const Login = function (props) {
+const Login = (props) => {
+  const { loginAction, navigation } = props;
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
 
-  const { login, navigation } = props
-  const [ email, setEmail ] = useState('')
-  const [ senha, setSenha ] = useState('')
-
-  function onChangeEmail(email){
-    setEmail(email)
+  function onChangeEmail(text) {
+    setEmail(text);
   }
 
-  function onChangeSenha(senha){
-    setSenha(senha)
+  function onChangeSenha(text) {
+    setSenha(text);
   }
 
-  function handleLogin(){
-    if(senha==='123456'){
-      AsyncStorage.setItem(varAsyncStorage.usuario, "Matheus Araujo")
-      login()
-    }else{
-      ToastAndroid.show("Usuário ou senha incorreta", ToastAndroid.SHORT)
+  function handleLogin() {
+    if (senha === '123456') {
+      AsyncStorage.setItem(varAsyncStorage.usuario, 'Matheus Araujo');
+      loginAction();
+    } else {
+      ToastAndroid.show('Usuário ou senha incorreta', ToastAndroid.SHORT);
     }
   }
 
-  function navigateToForgoutPassword(){
-    navigation.navigate('RedefinirSenha')
+  function navigateToForgoutPassword() {
+    navigation.navigate('RedefinirSenha');
   }
 
-  function navigateToCreateAcount(){
-    navigation.navigate('Cadastro')
+  function navigateToCreateAcount() {
+    navigation.navigate('Cadastro');
   }
-  
+
   return (
-    <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-        colors={degrades.d1} style={styles.container}>
+    <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      colors={degrades.d1}
+      style={styles.container}
+    >
       <Text style={styles.logo}>Logo do App</Text>
 
       <View style={styles.inputContainer}>
         <Icon name="md-person" size={30} color="#0008" />
-        <TextInput autoCapitalize="none" keyboardType="email-address" 
-            style={ styles.input } placeholder="Digite seu usuário ou email" 
-            value={ email } onChangeText={(email)=>onChangeEmail(email)}/>
+        <TextInput
+          autoCapitalize="none"
+          keyboardType="email-address"
+          style={styles.input}
+          placeholder="Digite seu usuário ou email"
+          value={email}
+          onChangeText={(text) => onChangeEmail(text)}
+        />
       </View>
 
       <View style={styles.inputContainer}>
         <Icon name="md-key" size={30} color="#0008" />
-        <TextInput secureTextEntry={true} style={ styles.input }
-            placeholder="Digite sua senha" value={ senha } 
-            onChangeText={ (senha)=>onChangeSenha(senha) }/>
+        <TextInput
+          secureTextEntry
+          style={styles.input}
+          placeholder="Digite sua senha"
+          value={senha}
+          onChangeText={(text) => onChangeSenha(text)}
+        />
       </View>
-      
+
       <Text onPress={navigateToForgoutPassword} style={styles.textLink}>
         Esqueci minha senha
       </Text>
@@ -68,7 +82,9 @@ const Login = function (props) {
       </TouchableOpacity>
 
       <Text onPress={navigateToCreateAcount} style={styles.textCreatAccount}>
-        Não tem conta? <Text style={styles.textLink}>Registre-se aqui</Text>
+        Não tem conta?
+        {' '}
+        <Text style={styles.textLink}>Registre-se aqui</Text>
       </Text>
 
     </LinearGradient>
@@ -76,17 +92,17 @@ const Login = function (props) {
 };
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  logo:{
+  logo: {
     fontSize: 30,
-    marginBottom: 50
+    marginBottom: 50,
   },
-  inputContainer:{
-    borderColor: "#000",
+  inputContainer: {
+    borderColor: '#000',
     alignSelf: 'stretch',
     paddingHorizontal: 15,
     paddingVertical: 0,
@@ -95,19 +111,19 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 4
+    marginVertical: 4,
   },
-  input:{
+  input: {
     flex: 1,
     paddingHorizontal: 20,
-    fontSize: 16
+    fontSize: 16,
   },
-  textLink:{
+  textLink: {
     color: cores.linkPrimario,
     textDecorationLine: 'underline',
-    fontSize: 16
+    fontSize: 16,
   },
-  buttonEntrar:{
+  buttonEntrar: {
     padding: 5,
     marginTop: 20,
     backgroundColor: cores.primaria,
@@ -117,19 +133,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     marginBottom: 20,
   },
-  textButton:{
+  textButton: {
     fontSize: 25,
-    color: "#FFF"
+    color: '#FFF',
   },
-  textCreatAccount:{
+  textCreatAccount: {
     position: 'absolute',
     bottom: 0,
-    fontSize: 15
-  }
+    fontSize: 15,
+  },
 
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ login }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ loginAction: login }, dispatch);
 
 export default connect(null, mapDispatchToProps)(Login);

@@ -1,13 +1,9 @@
-import { USER_LOGGED_IN, USER_LOGGED_OUT, VERIFICA_LOGGED_IN } from './actionTypes'
+import { USER_LOGGED_IN, USER_LOGGED_OUT } from './actionTypes';
 
-export const login = ()=>{
-    return {
-        type: USER_LOGGED_IN
-    }
-}
+export const login = () => ({
+  type: USER_LOGGED_IN,
+});
 
-export const logout = ()=>{
-    return {
-        type: USER_LOGGED_OUT
-    }
-}
+export const logout = () => ({
+  type: USER_LOGGED_OUT,
+});

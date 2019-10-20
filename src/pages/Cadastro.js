@@ -1,41 +1,41 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient'
-import Icon from 'react-native-vector-icons/Ionicons'
+import {
+  StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity,
+} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-import { cores, degrades } from '../constantes'
+import { cores, degrades } from '../constantes';
 
-const Cadastro = function ({ navigation }) {
-
-  return (    
-    <LinearGradient colors={degrades.d1} style={styles.container} >
-      <ScrollView style={styles.scroll} contentContainerStyle={{ alignItems: 'center' }}>
+const Cadastro = () => (
+  <LinearGradient colors={degrades.d1} style={styles.container}>
+    <ScrollView style={styles.scroll} contentContainerStyle={{ alignItems: 'center' }}>
 
       <Text style={styles.logo}>Logo do App</Text>
 
       <View style={styles.inputContainer}>
         <Icon name="ios-person" size={30} color="#0008" />
-        <TextInput autoCapitalize="words" style={styles.input} placeholder="Nome completo"/>
+        <TextInput autoCapitalize="words" style={styles.input} placeholder="Nome completo" />
       </View>
 
       <View style={styles.inputContainer}>
         <Icon name="ios-document" size={30} color="#0008" />
-        <TextInput keyboardType="number-pad" style={styles.input} placeholder="CPF"/>
+        <TextInput keyboardType="number-pad" style={styles.input} placeholder="CPF" />
       </View>
 
       <View style={styles.inputContainer}>
         <Icon name="ios-call" size={30} color="#0008" />
-        <TextInput keyboardType="phone-pad" style={styles.input} placeholder="Telefone (99) 99999-9999"/>
+        <TextInput keyboardType="phone-pad" style={styles.input} placeholder="Telefone (99) 99999-9999" />
       </View>
 
       <View style={styles.inputContainer}>
         <Icon name="md-mail" size={30} color="#0008" />
-        <TextInput style={styles.input} placeholder="Email"/>
+        <TextInput style={styles.input} placeholder="Email" />
       </View>
 
       <View style={styles.inputContainer}>
         <Icon name="md-key" size={30} color="#0008" />
-        <TextInput secureTextEntry style={styles.input} placeholder="Senha"/>
+        <TextInput secureTextEntry style={styles.input} placeholder="Senha" />
       </View>
 
       <TouchableOpacity style={styles.botaoCadastrar}>
@@ -44,22 +44,21 @@ const Cadastro = function ({ navigation }) {
         </Text>
       </TouchableOpacity>
 
-      </ScrollView>
-      
-    </LinearGradient>
-  );
-};
+    </ScrollView>
+
+  </LinearGradient>
+);
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
   },
-  logo:{
+  logo: {
     fontSize: 30,
-    marginVertical: 25
+    marginVertical: 25,
   },
-  inputContainer:{
-    borderColor: "#000",
+  inputContainer: {
+    borderColor: '#000',
     alignSelf: 'stretch',
     paddingHorizontal: 15,
     paddingVertical: 0,
@@ -68,19 +67,19 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 10
+    marginVertical: 10,
   },
-  input:{
+  input: {
     flex: 1,
     paddingHorizontal: 20,
-    fontSize: 16
+    fontSize: 16,
   },
-  scroll:{
+  scroll: {
     borderWidth: 0,
     borderColor: 'black',
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
   },
-  botaoCadastrar:{
+  botaoCadastrar: {
     borderWidth: 0,
     marginHorizontal: 25,
     borderRadius: 15,
@@ -90,12 +89,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 5,
     alignSelf: 'stretch',
-    marginBottom: 20
+    marginBottom: 20,
   },
-  textBotaoCadastrar:{
+  textBotaoCadastrar: {
     fontSize: 25,
-    color: "#FFF"
-  }
+    color: '#FFF',
+  },
 
 });
 

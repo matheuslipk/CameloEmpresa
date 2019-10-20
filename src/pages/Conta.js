@@ -1,31 +1,31 @@
 import React from 'react';
-import { 
-    StyleSheet, 
-    View, 
-    Text, 
-    TouchableOpacity, 
+import {
+  StyleSheet, View, Text, TouchableOpacity,
 } from 'react-native';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { logout } from '../store/actions/user'
 import AsyncStorage from '@react-native-community/async-storage';
-import { cores, degrades } from '../constantes'
-import LinearGradient from 'react-native-linear-gradient'
+import LinearGradient from 'react-native-linear-gradient';
+import { logout } from '../store/actions/user';
+import { degrades } from '../constantes';
 
 
-const Conta = function (props) {
+const Conta = (props) => {
+  const { logoutAction } = props;
 
-    const {logout} = props
+  async function handleLogout() {
+    await AsyncStorage.removeItem('@usuario');
+    logoutAction();
+  }
 
-    async function handleLogout(){
-      await AsyncStorage.removeItem('@usuario')
-      logout()
-    }
-
-  return (    
-    <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-        colors={degrades.d1} style={styles.container}>
+  return (
+    <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      colors={degrades.d1}
+      style={styles.container}
+    >
       <View style={styles.container}>
         <TouchableOpacity style={styles.buttonEntrar} onPress={handleLogout}>
           <Text style={styles.textButton}>Sair</Text>
@@ -36,20 +36,19 @@ const Conta = function (props) {
 };
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textButton:{
+  textButton: {
     fontSize: 20,
-    color: "#555",
-    fontWeight: 'bold'
-  }
+    color: '#555',
+    fontWeight: 'bold',
+  },
 
 });
 
-const mapDispatchToProps = (dispatch)=> 
-    bindActionCreators({ logout }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ logoutAction: logout }, dispatch);
 
 export default connect(null, mapDispatchToProps)(Conta);

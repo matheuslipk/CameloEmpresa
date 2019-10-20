@@ -1,50 +1,57 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient'
-import Icon from 'react-native-vector-icons/Ionicons'
+import {
+  StyleSheet, View, TextInput, TouchableOpacity, Text,
+} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-import { cores, degrades } from '../constantes'
+import { cores, degrades } from '../constantes';
 
-const RedefinirSenha = function ({ navigation }) {
+const RedefinirSenha = () => (
+  <LinearGradient colors={degrades.d1} style={styles.container}>
 
-  return (    
-    <LinearGradient colors={degrades.d1} style={styles.container} >
-      
-      <View style={styles.inputContainer}>
-        <Icon name="md-mail" size={30} color="#0008" />
-        <TextInput autoCapitalize="none" keyboardType="email-address" 
-            style={ styles.input } placeholder="Digite seu email"/>
-      </View>
+    <View style={styles.inputContainer}>
+      <Icon name="md-mail" size={30} color="#0008" />
+      <TextInput
+        autoCapitalize="none"
+        keyboardType="email-address"
+        style={styles.input}
+        placeholder="Digite seu email"
+      />
+    </View>
 
-      <Text style={{fontSize: 20, fontWeight: 'bold', color: "#888"}}>
+    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#888' }}>
         OU
-      </Text>
+    </Text>
 
-      <View style={styles.inputContainer}>
-        <Icon name="md-call" size={30} color="#0008" />
-        <TextInput autoCapitalize="none" keyboardType="email-address" 
-            style={ styles.input } placeholder="Digite seu número de telefone"/>
-      </View>
+    <View style={styles.inputContainer}>
+      <Icon name="md-call" size={30} color="#0008" />
+      <TextInput
+        autoCapitalize="none"
+        keyboardType="email-address"
+        style={styles.input}
+        placeholder="Digite seu número de telefone"
+      />
+    </View>
 
-      <TouchableOpacity style={styles.buttonEntrar}>
-        <Text style={styles.textButton}>Recuperar Senha</Text>
-      </TouchableOpacity>
+    <TouchableOpacity style={styles.buttonEntrar}>
+      <Text style={styles.textButton}>Recuperar Senha</Text>
+    </TouchableOpacity>
 
-    </LinearGradient>
-  );
-};
+  </LinearGradient>
+);
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text:{
+  text: {
 
   },
-  inputContainer:{
-    borderColor: "#000",
+  inputContainer: {
+    borderColor: '#000',
     alignSelf: 'stretch',
     paddingHorizontal: 15,
     paddingVertical: 0,
@@ -53,25 +60,25 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 4
+    marginVertical: 4,
   },
-  input:{
+  input: {
     flex: 1,
     paddingHorizontal: 20,
-    fontSize: 16
+    fontSize: 16,
   },
-  buttonEntrar:{
+  buttonEntrar: {
     padding: 5,
     marginTop: 20,
     backgroundColor: cores.primaria,
     alignItems: 'center',
     borderRadius: 15,
     alignSelf: 'stretch',
-    marginHorizontal: 25
+    marginHorizontal: 25,
   },
-  textButton:{
+  textButton: {
     fontSize: 25,
-    color: "#FFF"
+    color: '#FFF',
   },
 
 });

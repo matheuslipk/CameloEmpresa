@@ -1,39 +1,36 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import {RoutesLogin, RoutesMain} from './routes';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import AsyncStorage from '@react-native-community/async-storage';
-import { login, logout } from '../src/store/actions/user'
+import { RoutesLogin, RoutesMain } from './routes';
+import { login } from './store/actions/user';
 
-const App = function (props) {
-  const { login, logout, logado } = props   
+const App = (props) => {
+  const { loginAction, logado } = props;
 
-  async function verificaLogado(){
+  async function verificaLogado() {
     let usuario = null;
-    await AsyncStorage.getItem("@usuario").then(resultado=>{
-        usuario = resultado
-    })
-    if(usuario){
-      login()
-    } 
+    await AsyncStorage.getItem('@usuario').then((resultado) => {
+      usuario = resultado;
+    });
+    if (usuario) {
+      loginAction();
+    }
   }
 
-  verificaLogado()
+  verificaLogado();
 
   return (
     <>
-    { logado ? <RoutesMain/> : <RoutesLogin/> }    
+      { logado ? <RoutesMain /> : <RoutesLogin /> }
     </>
   );
-
-  
 };
 
-const mapStateToProps = store => ({
-  logado: store.logado
+const mapStateToProps = (store) => ({
+  logado: store.logado,
 });
 
-const mapDispatchToProps = dispatch=>
-  bindActionCreators({ login, logout }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ loginAction: login }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
