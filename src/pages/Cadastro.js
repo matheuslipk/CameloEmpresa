@@ -5,7 +5,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { cores, degrades } from '../constantes';
+import { cores, degrades, tamanhos } from '../constantes';
 
 const Cadastro = () => (
   <LinearGradient colors={degrades.d1} style={styles.container}>
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderColor: 'black',
     alignSelf: 'stretch',
+    marginTop: tamanhos.alturaHeader,
   },
   botaoCadastrar: {
     borderWidth: 0,

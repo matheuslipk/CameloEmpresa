@@ -3,7 +3,7 @@ import {
   StyleSheet, View, Text, TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { degrades } from '../constantes';
+import { degrades, tamanhos } from '../constantes';
 
 const Produto = () => {
   function handleLogout() {
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: tamanhos.alturaHeader,
   },
   textButton: {
     fontSize: 20,

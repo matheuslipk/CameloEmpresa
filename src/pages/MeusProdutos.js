@@ -21,7 +21,7 @@ const MeusProdutos = ({ navigation }) => {
     >
 
       <ScrollView style={styles.scrollPrincipal}>
-        {/* <Text style={styles.textTitulo}>Seus Produtos</Text> */}
+        <Text style={styles.textTitulo}>Seus Produtos</Text>
         <CardViewProduto onPress={handleClick} />
         <CardViewProduto onPress={handleClick} />
         <CardViewProduto onPress={handleClick} />

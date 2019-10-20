@@ -7,11 +7,17 @@ const cor4 = '#E9E4F0';
 export const cores = {
   primaria: '#AAF',
   linkPrimario: '#555',
+  header: '#6b52ae',
+  tinkColorHeader: '#fff',
 };
 
 export const degrades = {
   d1: [cor3, cor4],
   d2: [cor1, cor2],
+};
+
+export const tamanhos = {
+  alturaHeader: 55,
 };
 
 export const varAsyncStorage = {

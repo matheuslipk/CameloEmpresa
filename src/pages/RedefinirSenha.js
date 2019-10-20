@@ -5,7 +5,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { cores, degrades } from '../constantes';
+import { cores, degrades, tamanhos } from '../constantes';
 
 const RedefinirSenha = () => (
   <LinearGradient colors={degrades.d1} style={styles.container}>
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: tamanhos.alturaHeader,
   },
   text: {
 
