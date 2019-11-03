@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import {
-  StyleSheet, Text, TouchableOpacity, TextInput, ToastAndroid, View,
+  StyleSheet, Text, TouchableOpacity, TextInput, ToastAndroid, View, ActivityIndicator,
 } from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useDispatch } from 'react-redux';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import { cores, varAsyncStorage, degrades } from '../constantes';
 import { login } from '../store/actions/user';
+import api from '../services/api';
+import Header from '../components/Header';
 
-const Login = (props) => {
-  const { loginAction, navigation } = props;
+export default function Login(props) {
+  const { navigation } = props;
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [carregando, setCarregando] = useState(false);
+
+  const dispatch = useDispatch();
 
   function onChangeEmail(text) {
     setEmail(text);
@@ -24,12 +28,19 @@ const Login = (props) => {
     setSenha(text);
   }
 
-  function handleLogin() {
-    if (senha === '123456') {
-      AsyncStorage.setItem(varAsyncStorage.usuario, 'Matheus Araujo');
-      loginAction({ id: 1, name: 'Nome', email: 'email' });
-    } else {
-      ToastAndroid.show('Usuário ou senha incorreta', ToastAndroid.SHORT);
+  async function handleLogin() {
+    try {
+      setCarregando(true);
+      const session = await api.post('/sessions_store', {
+        email,
+        password: senha,
+      });
+      const { id, name } = session.data.store;
+      await AsyncStorage.setItem(varAsyncStorage.token, session.data.token);
+      dispatch(login({ id, name, email }));
+    } catch (err) {
+      ToastAndroid.show('Erro', ToastAndroid.SHORT);
+      setCarregando(false);
     }
   }
 
@@ -42,54 +53,69 @@ const Login = (props) => {
   }
 
   return (
-    <LinearGradient
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-      colors={degrades.d1}
-      style={styles.container}
-    >
-      <Text style={styles.logo}>Logo do App</Text>
+    <>
+      <Header />
 
-      <View style={styles.inputContainer}>
-        <Icon name="md-person" size={30} color="#0008" />
-        <TextInput
-          autoCapitalize="none"
-          keyboardType="email-address"
-          style={styles.input}
-          placeholder="Digite seu usuário ou email"
-          value={email}
-          onChangeText={(text) => onChangeEmail(text)}
-        />
-      </View>
+      <LinearGradient
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        colors={degrades.d1}
+        style={styles.container}
+      >
 
-      <View style={styles.inputContainer}>
-        <Icon name="md-key" size={30} color="#0008" />
-        <TextInput
-          secureTextEntry
-          style={styles.input}
-          placeholder="Digite sua senha"
-          value={senha}
-          onChangeText={(text) => onChangeSenha(text)}
-        />
-      </View>
+        {
+          carregando ? (
+            <ActivityIndicator
+              style={styles.carregando}
+              size="large"
+              color={cores.primaria}
+            />
+          ) : null
+        }
 
-      <Text onPress={navigateToForgoutPassword} style={styles.textLink}>
+        <Text style={styles.logo}>Logo do App</Text>
+
+        <View style={styles.inputContainer}>
+          <Ionicons name="md-person" size={30} color="#0008" />
+          <TextInput
+            autoCapitalize="none"
+            keyboardType="email-address"
+            style={styles.input}
+            placeholder="Digite seu usuário ou email"
+            value={email}
+            onChangeText={(text) => onChangeEmail(text)}
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Ionicons name="md-key" size={30} color="#0008" />
+          <TextInput
+            secureTextEntry
+            style={styles.input}
+            placeholder="Digite sua senha"
+            value={senha}
+            onChangeText={(text) => onChangeSenha(text)}
+          />
+        </View>
+
+        <Text onPress={navigateToForgoutPassword} style={styles.textLink}>
         Esqueci minha senha
-      </Text>
+        </Text>
 
-      <TouchableOpacity onPress={handleLogin} style={styles.buttonEntrar}>
-        <Text style={styles.textButton}>Entrar</Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={handleLogin} style={styles.buttonEntrar}>
+          <Text style={styles.textButton}>Entrar</Text>
+        </TouchableOpacity>
 
-      <Text onPress={navigateToCreateAcount} style={styles.textCreatAccount}>
+        <Text onPress={navigateToCreateAcount} style={styles.textCreatAccount}>
         Não tem conta?
-        {' '}
-        <Text style={styles.textLink}>Registre-se aqui</Text>
-      </Text>
+          {' '}
+          <Text style={styles.textLink}>Registre-se aqui</Text>
+        </Text>
 
-    </LinearGradient>
+      </LinearGradient>
+    </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -142,9 +168,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     fontSize: 15,
   },
-
+  carregando: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    zIndex: 1,
+    backgroundColor: '#0005',
+  },
 });
-
-const mapDispatchToProps = (dispatch) => bindActionCreators({ loginAction: login }, dispatch);
-
-export default connect(null, mapDispatchToProps)(Login);
