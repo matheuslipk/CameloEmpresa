@@ -1,7 +1,7 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 
 import Login from './pages/Login';
 import RedefinirSenha from './pages/RedefinirSenha';
@@ -10,74 +10,42 @@ import Main from './pages/Main';
 import Cadastro from './pages/Cadastro';
 import Conta from './pages/Conta';
 import Produto from './pages/Produto';
-import Header from './components/Header';
-import { cores } from './constantes';
+
+import MyDrawer from './components/MyDrawer';
 
 // Pilha de telas do login
 const stackLogin = createStackNavigator({
   Login: {
     screen: Login,
-    navigationOptions: {
-      header: null,
-    },
   },
   RedefinirSenha: {
     screen: RedefinirSenha,
-    navigationOptions: {
-      headerTransparent: true,
-      headerBackground: <Header />,
-      headerTintColor: cores.tinkColorHeader,
-    },
   },
   Cadastro: {
     screen: Cadastro,
-    navigationOptions: {
-      headerTransparent: true,
-      headerBackground: <Header />,
-      headerTintColor: cores.tinkColorHeader,
-    },
   },
+}, {
+  headerMode: 'none',
 });
 
 // Pilha de telas dos produtos
 const stackMeusProdutos = createStackNavigator({
-  MeusProdutos: {
-    screen: MeusProdutos,
-    navigationOptions: {
-      headerTitle: 'Meus Produtos',
-      headerTransparent: true,
-      headerBackground: <Header />,
-      headerTintColor: cores.tinkColorHeader,
-      header: null,
-    },
-  },
-  Produto: {
-    screen: Produto,
-    navigationOptions: {
-      headerTintColor: cores.tinkColorHeader,
-      headerTransparent: true,
-      headerBackground: <Header />,
-    },
-  },
+  MeusProdutos,
+  Produto,
+}, {
+  headerMode: 'none',
 });
 
-const tabNavigatorPrincipal = createBottomTabNavigator({
-  Principal: {
-    screen: Main,
-  },
-  'Meus Produtos': stackMeusProdutos,
+const drawerPrincipal = createDrawerNavigator({
+  Main,
   Conta,
-},
-{
-  tabBarOptions: {
-    activeTintColor: 'red',
-    inactiveTintColor: 'blue',
-  },
-  initialRouteName: 'Meus Produtos',
+  'Meus Produtos': stackMeusProdutos,
+}, {
+  contentComponent: ({ navigation }) => (<MyDrawer navigation={navigation} />),
 });
 
 const RoutesLogin = createAppContainer(stackLogin);
 
-const RoutesMain = createAppContainer(tabNavigatorPrincipal);
+const RoutesMain = createAppContainer(drawerPrincipal);
 
 export { RoutesLogin, RoutesMain };

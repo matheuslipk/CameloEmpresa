@@ -1,36 +1,32 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { useEffect } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { RoutesLogin, RoutesMain } from './routes';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { login } from './store/actions/user';
+import { RoutesLogin, RoutesMain } from './routes';
+import { varAsyncStorage } from './constantes';
 
-const App = (props) => {
-  const { loginAction, logado } = props;
+export default function Index() {
+  const usuario = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  async function verificaLogado() {
-    let usuario = null;
-    await AsyncStorage.getItem('@usuario').then((resultado) => {
-      usuario = resultado;
-    });
-    if (usuario) {
-      loginAction();
+  useEffect(() => {
+    async function verificaLogado() {
+      await AsyncStorage.getItem(varAsyncStorage.token)
+        .then((resultado) => {
+          if (resultado) {
+            dispatch(login({ name: 'teste', email: 'teste@email.com' }));
+          }
+        })
+        .catch();
     }
-  }
 
-  verificaLogado();
+    verificaLogado();
+  }, [dispatch]);
 
   return (
     <>
-      { logado ? <RoutesMain /> : <RoutesLogin /> }
+      { usuario.logged ? <RoutesMain /> : <RoutesLogin /> }
     </>
   );
-};
-
-const mapStateToProps = (store) => ({
-  logado: store.logado,
-});
-
-const mapDispatchToProps = (dispatch) => bindActionCreators({ loginAction: login }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+}

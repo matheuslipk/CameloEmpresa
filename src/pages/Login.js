@@ -27,7 +27,7 @@ const Login = (props) => {
   function handleLogin() {
     if (senha === '123456') {
       AsyncStorage.setItem(varAsyncStorage.usuario, 'Matheus Araujo');
-      loginAction();
+      loginAction({ id: 1, name: 'Nome', email: 'email' });
     } else {
       ToastAndroid.show('Usuário ou senha incorreta', ToastAndroid.SHORT);
     }

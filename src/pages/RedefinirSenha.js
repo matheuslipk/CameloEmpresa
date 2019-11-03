@@ -3,70 +3,74 @@ import {
   StyleSheet, View, TextInput, TouchableOpacity, Text,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { cores, degrades, tamanhos } from '../constantes';
 
-const RedefinirSenha = () => (
-  <LinearGradient colors={degrades.d1} style={styles.container}>
+import {
+  cores, degrades, stylesComponents,
+} from '../constantes';
+import Header from '../components/Header';
 
-    <View style={styles.inputContainer}>
-      <Icon name="md-mail" size={30} color="#0008" />
-      <TextInput
-        autoCapitalize="none"
-        keyboardType="email-address"
-        style={styles.input}
-        placeholder="Digite seu email"
-      />
-    </View>
+const RedefinirSenha = (props) => {
+  const { navigation } = props;
+  return (
+    <>
+      <Header navigation={navigation} botaoVoltar />
+      <LinearGradient
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        colors={degrades.d1}
+        style={styles.container}
+      >
 
-    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#888' }}>
+
+        <View style={styles.inputContainer}>
+          <Ionicons name="md-mail" size={30} color="#0008" />
+          <TextInput
+            autoCapitalize="none"
+            keyboardType="email-address"
+            style={styles.input}
+            placeholder="Digite seu email"
+          />
+        </View>
+
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#888' }}>
         OU
-    </Text>
+        </Text>
 
-    <View style={styles.inputContainer}>
-      <Icon name="md-call" size={30} color="#0008" />
-      <TextInput
-        autoCapitalize="none"
-        keyboardType="email-address"
-        style={styles.input}
-        placeholder="Digite seu número de telefone"
-      />
-    </View>
+        <View style={styles.inputContainer}>
+          <Ionicons name="md-call" size={30} color="#0008" />
+          <TextInput
+            autoCapitalize="none"
+            keyboardType="email-address"
+            style={styles.input}
+            placeholder="Digite seu número de telefone"
+          />
+        </View>
 
-    <TouchableOpacity style={styles.buttonEntrar}>
-      <Text style={styles.textButton}>Recuperar Senha</Text>
-    </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonEntrar}>
+          <Text style={styles.textButton}>Recuperar Senha</Text>
+        </TouchableOpacity>
 
-  </LinearGradient>
-);
+      </LinearGradient>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: tamanhos.alturaHeader,
   },
   text: {
 
   },
   inputContainer: {
-    borderColor: '#000',
-    alignSelf: 'stretch',
-    paddingHorizontal: 15,
-    paddingVertical: 0,
-    backgroundColor: '#FFFFFF88',
-    marginHorizontal: 25,
-    borderRadius: 5,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 4,
+    ...stylesComponents.inputcontainer,
   },
   input: {
-    flex: 1,
-    paddingHorizontal: 20,
-    fontSize: 16,
+    ...stylesComponents.input,
   },
   buttonEntrar: {
     padding: 5,

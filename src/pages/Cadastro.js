@@ -3,51 +3,68 @@ import {
   StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { cores, degrades, tamanhos } from '../constantes';
+import {
+  cores, degrades, stylesComponents,
+} from '../constantes';
 
-const Cadastro = () => (
-  <LinearGradient colors={degrades.d1} style={styles.container}>
-    <ScrollView style={styles.scroll} contentContainerStyle={{ alignItems: 'center' }}>
+import Header from '../components/Header';
 
-      <Text style={styles.logo}>Logo do App</Text>
+const Cadastro = (props) => {
+  const { navigation } = props;
 
-      <View style={styles.inputContainer}>
-        <Icon name="ios-person" size={30} color="#0008" />
-        <TextInput autoCapitalize="words" style={styles.input} placeholder="Nome completo" />
-      </View>
+  return (
+    <>
+      <Header navigation={navigation} botaoVoltar />
+      <LinearGradient
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        colors={degrades.d1}
+        style={styles.container}
+      >
 
-      <View style={styles.inputContainer}>
-        <Icon name="ios-document" size={30} color="#0008" />
-        <TextInput keyboardType="number-pad" style={styles.input} placeholder="CPF" />
-      </View>
+        <ScrollView style={styles.scroll} contentContainerStyle={{ alignItems: 'center' }}>
 
-      <View style={styles.inputContainer}>
-        <Icon name="ios-call" size={30} color="#0008" />
-        <TextInput keyboardType="phone-pad" style={styles.input} placeholder="Telefone (99) 99999-9999" />
-      </View>
+          <Text style={styles.logo}>Logo do App</Text>
 
-      <View style={styles.inputContainer}>
-        <Icon name="md-mail" size={30} color="#0008" />
-        <TextInput style={styles.input} placeholder="Email" />
-      </View>
+          <View style={styles.inputContainer}>
+            <Ionicons name="ios-person" size={30} color="#0008" />
+            <TextInput autoCapitalize="words" style={styles.input} placeholder="Nome completo" />
+          </View>
 
-      <View style={styles.inputContainer}>
-        <Icon name="md-key" size={30} color="#0008" />
-        <TextInput secureTextEntry style={styles.input} placeholder="Senha" />
-      </View>
+          <View style={styles.inputContainer}>
+            <Ionicons name="ios-document" size={30} color="#0008" />
+            <TextInput keyboardType="number-pad" style={styles.input} placeholder="CPF" />
+          </View>
 
-      <TouchableOpacity style={styles.botaoCadastrar}>
-        <Text style={styles.textBotaoCadastrar}>
+          <View style={styles.inputContainer}>
+            <Ionicons name="ios-call" size={30} color="#0008" />
+            <TextInput keyboardType="phone-pad" style={styles.input} placeholder="Telefone (99) 99999-9999" />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <Ionicons name="md-mail" size={30} color="#0008" />
+            <TextInput style={styles.input} placeholder="Email" />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <Ionicons name="md-key" size={30} color="#0008" />
+            <TextInput secureTextEntry style={styles.input} placeholder="Senha" />
+          </View>
+
+          <TouchableOpacity style={styles.botaoCadastrar}>
+            <Text style={styles.textBotaoCadastrar}>
           Cadastrar
-        </Text>
-      </TouchableOpacity>
+            </Text>
+          </TouchableOpacity>
 
-    </ScrollView>
+        </ScrollView>
 
-  </LinearGradient>
-);
+      </LinearGradient>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -58,27 +75,15 @@ const styles = StyleSheet.create({
     marginVertical: 25,
   },
   inputContainer: {
-    borderColor: '#000',
-    alignSelf: 'stretch',
-    paddingHorizontal: 15,
-    paddingVertical: 0,
-    backgroundColor: '#FFFFFF88',
-    marginHorizontal: 25,
-    borderRadius: 5,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
+    ...stylesComponents.inputcontainer,
   },
   input: {
-    flex: 1,
-    paddingHorizontal: 20,
-    fontSize: 16,
+    ...stylesComponents.input,
   },
   scroll: {
     borderWidth: 0,
     borderColor: 'black',
     alignSelf: 'stretch',
-    marginTop: tamanhos.alturaHeader,
   },
   botaoCadastrar: {
     borderWidth: 0,
