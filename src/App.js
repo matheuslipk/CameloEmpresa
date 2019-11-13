@@ -12,10 +12,11 @@ export default function Index() {
 
   useEffect(() => {
     async function verificaLogado() {
+      const store = await AsyncStorage.getItem(varAsyncStorage.store);
       await AsyncStorage.getItem(varAsyncStorage.token)
         .then((resultado) => {
-          if (resultado) {
-            dispatch(login({ name: 'teste', email: 'teste@email.com' }));
+          if (resultado && store) {
+            dispatch(login(JSON.parse(store)));
           }
         })
         .catch();

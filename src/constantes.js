@@ -33,6 +33,7 @@ export const varAsyncStorage = {
   email: '@email',
   senha: '@senha',
   token: '@token',
+  store: '@store',
 };
 
 export const stylesComponents = {

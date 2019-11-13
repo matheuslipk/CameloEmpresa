@@ -31,13 +31,14 @@ export default function Login(props) {
   async function handleLogin() {
     try {
       setCarregando(true);
-      const session = await api.post('/sessions_store', {
+      const response = await api.post('/sessions_store', {
         email,
         password: senha,
       });
-      const { id, name } = session.data.store;
-      await AsyncStorage.setItem(varAsyncStorage.token, session.data.token);
-      dispatch(login({ id, name, email }));
+      const { store, token } = response.data;
+      await AsyncStorage.setItem(varAsyncStorage.token, token);
+      await AsyncStorage.setItem(varAsyncStorage.store, JSON.stringify(store));
+      dispatch(login(store));
     } catch (err) {
       ToastAndroid.show('Erro', ToastAndroid.SHORT);
       setCarregando(false);
