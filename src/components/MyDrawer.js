@@ -5,7 +5,6 @@ import {
 import { useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { cores } from '../constantes';
-import profile from '../assets/barrinha.jpg';
 
 // import { Container } from './styles';
 
@@ -24,7 +23,7 @@ export default function MyDrawer({ navigation }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.topoDrawer} onPress={() => navigation.navigate('Conta')}>
-        <Image source={profile} style={styles.imagemPerfil} />
+        <Image source={usuario.avatar} style={styles.imagemPerfil} />
         <Text>{usuario.name}</Text>
         <Text>{usuario.email}</Text>
       </TouchableOpacity>
