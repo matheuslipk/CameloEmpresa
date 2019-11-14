@@ -1,23 +1,17 @@
 import React from 'react';
 import {
-  StyleSheet, View, Text, Image, TouchableOpacity, Alert,
+  StyleSheet, View, Text, Image, TouchableOpacity,
 } from 'react-native';
 
 import {
   Menu, MenuOptions, MenuOption, MenuTrigger,
 } from 'react-native-popup-menu';
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const CardViewProduto = (props) => {
-  const { onPress } = props;
-
-  function deletarProduto() {
-    Alert.alert('Deseja continuar?', 'Se você continuar o produto selecionado sera apagado', [
-      { text: 'Cancelar' },
-      { text: 'Apagar' },
-    ]);
-  }
+  const {
+    onPress, ads, handleDelete,
+  } = props;
 
   return (
 
@@ -26,8 +20,12 @@ const CardViewProduto = (props) => {
 
 
       <View style={styles.containerInfoProduto}>
-        <Text style={styles.textTituloAnuncio}>Título do anúncio</Text>
-        <Text style={styles.textPrecoAnuncio}>R$ 899,90</Text>
+        <Text style={styles.textTituloAnuncio}>{ads.name}</Text>
+        <Text style={styles.textPrecoAnuncio}>
+          R$
+          {' '}
+          {ads.price}
+        </Text>
       </View>
 
       <Menu>
@@ -38,7 +36,7 @@ const CardViewProduto = (props) => {
           <MenuOption onSelect={onPress}>
             <Text style={styles.textMenuOption}>Editar Produto</Text>
           </MenuOption>
-          <MenuOption onSelect={deletarProduto}>
+          <MenuOption onSelect={handleDelete}>
             <Text style={styles.textMenuOption}>Apagar Produto</Text>
           </MenuOption>
         </MenuOptions>
